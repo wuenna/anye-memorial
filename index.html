@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>金在民 · 摄影作品集</title>
+    <title>金在民 · 摄影</title>
     <style>
         * {
             margin: 0;
@@ -11,235 +11,79 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #141414;
-            --bg-card: #1a1a1a;
-            --text-primary: #f0f0f0;
-            --text-secondary: #888888;
-            --accent: #c9a96e;
-            --accent-light: #d4b87a;
-        }
-
         body {
+            background: #0a0a0a;
+            color: #e0e0e0;
             font-family: 'Helvetica Neue', 'Microsoft YaHei', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
+            min-height: 100vh;
         }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .nav-container {
-            max-width: 1400px;
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 4rem 2rem;
         }
 
-        .logo {
-            font-size: 1.2rem;
-            font-weight: 300;
-            letter-spacing: 0.3rem;
-            color: var(--accent);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.85rem;
-            letter-spacing: 0.15rem;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        header {
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-title {
-            font-size: 5rem;
-            font-weight: 200;
-            letter-spacing: 1rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .hero-subtitle {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            letter-spacing: 0.5rem;
-            font-weight: 300;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-indicator span {
-            display: block;
-            width: 1px;
-            height: 40px;
-            background: var(--text-secondary);
-            margin: 0 auto;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
-
-        /* Section Styles */
-        .section {
-            padding: 8rem 3rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
             margin-bottom: 4rem;
         }
 
-        .section-title {
-            font-size: 0.85rem;
-            color: var(--accent);
-            letter-spacing: 0.3rem;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .section-description {
+        h1 {
             font-size: 2rem;
-            font-weight: 200;
-            line-height: 1.4;
-            max-width: 600px;
+            font-weight: 300;
+            letter-spacing: 0.5rem;
+            margin-bottom: 0.5rem;
         }
 
-        /* Filter Buttons */
-        .filter-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
+        .subtitle {
+            color: #888;
+            font-size: 0.9rem;
+            letter-spacing: 0.2rem;
         }
 
-        .filter-btn {
-            padding: 0.6rem 1.5rem;
-            background: transparent;
-            border: 1px solid var(--text-secondary);
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            letter-spacing: 0.1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: var(--bg-primary);
-        }
-
-        /* Photo Grid */
-        .photo-grid {
+        .gallery {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
         }
 
-        .photo-item {
+        .photo {
             position: relative;
             overflow: hidden;
             cursor: pointer;
             aspect-ratio: 4/3;
         }
 
-        .photo-item img {
+        .photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            transition: transform 0.3s;
         }
 
-        .photo-item:hover img {
-            transform: scale(1.05);
+        .photo:hover img {
+            transform: scale(1.03);
         }
 
-        .photo-overlay {
+        .photo-label {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 2rem;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
             opacity: 0;
             transition: opacity 0.3s;
         }
 
-        .photo-item:hover .photo-overlay {
+        .photo:hover .photo-label {
             opacity: 1;
         }
 
-        .photo-title {
-            font-size: 1rem;
-            font-weight: 400;
-            margin-bottom: 0.3rem;
-        }
-
-        .photo-category {
-            font-size: 0.75rem;
-            color: var(--accent);
-            letter-spacing: 0.15rem;
+        .photo-label p {
+            font-size: 0.85rem;
+            color: #ccc;
         }
 
         /* Lightbox */
@@ -250,8 +94,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 2000;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
             justify-content: center;
             align-items: center;
             cursor: pointer;
@@ -267,469 +111,73 @@
             object-fit: contain;
         }
 
-        .lightbox-close {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            color: var(--text-primary);
-            font-size: 2rem;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* About Section */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-image {
-            aspect-ratio: 3/4;
-            overflow: hidden;
-        }
-
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .about-content h3 {
-            font-size: 1.8rem;
-            font-weight: 300;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-content p {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-            padding-top: 3rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .stat-item h4 {
-            font-size: 2rem;
-            font-weight: 200;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            letter-spacing: 0.1rem;
-        }
-
-        /* Quote Section */
-        .quote-section {
-            text-align: center;
-            padding: 10rem 3rem;
-            background: var(--bg-secondary);
-        }
-
-        .quote-text {
-            font-size: 2.5rem;
-            font-weight: 200;
-            line-height: 1.4;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            font-style: italic;
-        }
-
-        .quote-author {
-            color: var(--accent);
-            font-size: 0.85rem;
-            letter-spacing: 0.2rem;
-        }
-
-        /* Contact Section */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-info h3 {
-            font-size: 1.5rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
-        }
-
-        .contact-item {
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-label {
-            font-size: 0.75rem;
-            color: var(--accent);
-            letter-spacing: 0.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-value {
-            color: var(--text-secondary);
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-            font-size: 0.9rem;
-            font-family: inherit;
-        }
-
-        .form-group textarea {
-            height: 150px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            padding: 1rem 3rem;
-            background: var(--accent);
-            color: var(--bg-primary);
-            border: none;
-            font-size: 0.85rem;
-            letter-spacing: 0.2rem;
-            cursor: pointer;
-            transition: background 0.3s;
-            align-self: flex-start;
-        }
-
-        .submit-btn:hover {
-            background: var(--accent-light);
-        }
-
-        /* Footer */
         footer {
-            padding: 3rem;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        footer p {
-            color: var(--text-secondary);
+            padding: 3rem;
+            color: #555;
             font-size: 0.8rem;
         }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .photo-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 3rem;
-                letter-spacing: 0.5rem;
-            }
-
-            .section {
-                padding: 5rem 1.5rem;
-            }
-
-            .photo-grid {
+        @media (max-width: 600px) {
+            .gallery {
                 grid-template-columns: 1fr;
             }
-
-            .about-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
+            
+            h1 {
+                font-size: 1.5rem;
             }
-
-            .nav-links {
-                display: none;
-            }
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">JIN ZAIMIN</div>
-            <ul class="nav-links">
-                <li><a href="#works">作品</a></li>
-                <li><a href="#about">关于</a></li>
-                <li><a href="#quote">理念</a></li>
-                <li><a href="#contact">联系</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div class="container">
+        <header>
+            <h1>金在民</h1>
+            <p class="subtitle">摄影作品</p>
+        </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">金在民</h1>
-            <p class="hero-subtitle">PHOTOGRAPHY PORTFOLIO</p>
-        </div>
-        <div class="scroll-indicator">
-            <span></span>
-        </div>
-    </section>
-
-    <!-- Works Section -->
-    <section class="section" id="works">
-        <div class="section-header">
-            <p class="section-title">Portfolio</p>
-            <h2 class="section-description">用镜头记录珍贵瞬间</h2>
-        </div>
-
-        <div class="filter-buttons">
-            <button class="filter-btn active" data-filter="all">全部</button>
-            <button class="filter-btn" data-filter="family">家族</button>
-            <button class="filter-btn" data-filter="portrait">人像</button>
-            <button class="filter-btn" data-filter="moment">瞬间</button>
-        </div>
-
-        <div class="photo-grid">
-            <div class="photo-item fade-in" data-category="family">
+        <div class="gallery">
+            <div class="photo" onclick="openLightbox(this)">
                 <img src="assets/金在民相册最后一页.jpg" alt="金在民相册">
-                <div class="photo-overlay">
-                    <h3 class="photo-title">珍贵回忆</h3>
-                    <p class="photo-category">家族 · 记忆</p>
+                <div class="photo-label">
+                    <p>珍贵回忆</p>
                 </div>
             </div>
 
-            <div class="photo-item fade-in" data-category="portrait">
-                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1a1a2e, #16213e); display: flex; align-items: center; justify-content: center;">
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">待添加</p>
-                </div>
-                <div class="photo-overlay">
-                    <h3 class="photo-title">姐姐金在秀</h3>
-                    <p class="photo-category">人像 · 姐弟</p>
+            <div class="photo" onclick="openLightbox(this)">
+                <img src="assets/金在民相册最后一页.jpg" alt="金在秀">
+                <div class="photo-label">
+                    <p>姐姐金在秀</p>
                 </div>
             </div>
 
-            <div class="photo-item fade-in" data-category="moment">
-                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #2d1b3d, #1a1a2e); display: flex; align-items: center; justify-content: center;">
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">待添加</p>
-                </div>
-                <div class="photo-overlay">
-                    <h3 class="photo-title">海边瞬间</h3>
-                    <p class="photo-category">瞬间 · 回忆</p>
-                </div>
-            </div>
-
-            <div class="photo-item fade-in" data-category="family">
-                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1a2e1a, #0a1a0a); display: flex; align-items: center; justify-content: center;">
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">待添加</p>
-                </div>
-                <div class="photo-overlay">
-                    <h3 class="photo-title">奶奶的笑容</h3>
-                    <p class="photo-category">家族 · 温情</p>
-                </div>
-            </div>
-
-            <div class="photo-item fade-in" data-category="portrait">
-                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #3d2d1b, #1a1a1a); display: flex; align-items: center; justify-content: center;">
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">待添加</p>
-                </div>
-                <div class="photo-overlay">
-                    <h3 class="photo-title">白瑞妍</h3>
-                    <p class="photo-category">人像 · 爱情</p>
-                </div>
-            </div>
-
-            <div class="photo-item fade-in" data-category="moment">
-                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1a1a3d, #0a0a2e); display: flex; align-items: center; justify-content: center;">
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">待添加</p>
-                </div>
-                <div class="photo-overlay">
-                    <h3 class="photo-title">写真时刻</h3>
-                    <p class="photo-category">瞬间 · 记录</p>
+            <div class="photo" onclick="openLightbox(this)">
+                <img src="assets/金在民相册最后一页.jpg" alt="海边">
+                <div class="photo-label">
+                    <p>海边瞬间</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- About Section -->
-    <section class="section" id="about">
-        <div class="about-grid">
-            <div class="about-image">
-                <img src="assets/金在民相册最后一页.jpg" alt="金在民">
-            </div>
-            <div class="about-content">
-                <p class="section-title">About</p>
-                <h3>用镜头讲述故事</h3>
-                <p>我是金在民，SOL财阀家族的次孙，也是一名摄影师。</p>
-                <p>对我而言，摄影不仅是爱好，更是记录珍贵瞬间的方式。我用镜头捕捉家人的笑容、泪水、成长，这些照片成为我最宝贵的财富。</p>
-                <p>"拍姐姐赛车冲过终点时扬起的尘土，拍奶奶看完文件后，偶尔抬头时，窗外落在她身上的夕阳。"</p>
-
-                <div class="about-stats">
-                    <div class="stat-item">
-                        <h4>100+</h4>
-                        <p>作品数量</p>
-                    </div>
-                    <div class="stat-item">
-                        <h4>3</h4>
-                        <p>摄影系列</p>
-                    </div>
-                    <div class="stat-item">
-                        <h4>∞</h4>
-                        <p>珍贵回忆</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quote Section -->
-    <section class="quote-section" id="quote">
-        <p class="quote-text">"我很少拍照，不过我很喜欢给别人拍照。"</p>
-        <p class="quote-author">—— 金在民</p>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section" id="contact">
-        <div class="contact-grid">
-            <div class="contact-info">
-                <p class="section-title">Contact</p>
-                <h3>联系我</h3>
-                <div class="contact-item">
-                    <p class="contact-label">EMAIL</p>
-                    <p class="contact-value">zaimin.jin@sol.com</p>
-                </div>
-                <div class="contact-item">
-                    <p class="contact-label">LOCATION</p>
-                    <p class="contact-value">韩索合众国 · 汉江</p>
-                </div>
-                <div class="contact-item">
-                    <p class="contact-label">SOCIAL</p>
-                    <p class="contact-value">SOL集团官方账号</p>
-                </div>
-            </div>
-            <form class="contact-form">
-                <div class="form-group">
-                    <input type="text" placeholder="姓名">
-                </div>
-                <div class="form-group">
-                    <input type="email" placeholder="邮箱">
-                </div>
-                <div class="form-group">
-                    <textarea placeholder="留言"></textarea>
-                </div>
-                <button type="submit" class="submit-btn">发送</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
-        <p>© 2024 金在民 · 摄影作品集 · SOL集团</p>
+        <p>金在民 · 摄影</p>
     </footer>
 
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-close">✕</div>
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <img src="" alt="" id="lightbox-img">
     </div>
 
     <script>
-        // Filter functionality
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Update active button
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+        function openLightbox(el) {
+            const img = el.querySelector('img');
+            document.getElementById('lightbox-img').src = img.src;
+            document.getElementById('lightbox').classList.add('active');
+        }
 
-                const filter = btn.dataset.filter;
-                document.querySelectorAll('.photo-item').forEach(item => {
-                    if (filter === 'all' || item.dataset.category === filter) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        });
-
-        // Lightbox functionality
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-
-        document.querySelectorAll('.photo-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const img = item.querySelector('img');
-                if (img) {
-                    lightboxImg.src = img.src;
-                    lightbox.classList.add('active');
-                }
-            });
-        });
-
-        document.querySelector('.lightbox-close').addEventListener('click', () => {
-            lightbox.classList.remove('active');
-        });
-
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                lightbox.classList.remove('active');
-            }
-        });
-
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
     </script>
 </body>
 </html>
