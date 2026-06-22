@@ -26,7 +26,7 @@
 
         header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         h1 {
@@ -34,12 +34,6 @@
             font-weight: 300;
             letter-spacing: 0.5rem;
             margin-bottom: 0.5rem;
-        }
-
-        .subtitle {
-            color: #888;
-            font-size: 0.9rem;
-            letter-spacing: 0.2rem;
         }
 
         .gallery {
@@ -64,26 +58,6 @@
 
         .photo:hover img {
             transform: scale(1.03);
-        }
-
-        .photo-label {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .photo:hover .photo-label {
-            opacity: 1;
-        }
-
-        .photo-label p {
-            font-size: 0.85rem;
-            color: #ccc;
         }
 
         /* Lightbox */
@@ -132,30 +106,20 @@
 <body>
     <div class="container">
         <header>
-            <h1>金在民</h1>
-            <p class="subtitle">摄影作品</p>
+            <h1>金在民 · 摄影</h1>
         </header>
 
         <div class="gallery">
             <div class="photo" onclick="openLightbox(this)">
-                <img src="assets/金在民相册最后一页.jpg" alt="金在民相册">
-                <div class="photo-label">
-                    <p>珍贵回忆</p>
-                </div>
+                <img src="assets/photo1.jpg" alt="photo1">
             </div>
 
             <div class="photo" onclick="openLightbox(this)">
-                <img src="assets/金在民相册最后一页.jpg" alt="金在秀">
-                <div class="photo-label">
-                    <p>姐姐金在秀</p>
-                </div>
+                <img src="assets/photo2.jpg" alt="photo2">
             </div>
 
             <div class="photo" onclick="openLightbox(this)">
-                <img src="assets/金在民相册最后一页.jpg" alt="海边">
-                <div class="photo-label">
-                    <p>海边瞬间</p>
-                </div>
+                <img src="assets/photo3.jpg" alt="photo3">
             </div>
         </div>
     </div>
